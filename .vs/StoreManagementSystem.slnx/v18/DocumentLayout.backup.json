@@ -1,0 +1,46 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\LAPTOP\\OneDrive\\Desktop\\New folder\\StoreManagementSystem\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{62A2457D-EB4B-4C3A-8DBD-4AA68251BCA4}|StoreManagementSystem.csproj|c:\\users\\laptop\\onedrive\\desktop\\new folder\\storemanagementsystem\\views\\transactiondetailswindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{62A2457D-EB4B-4C3A-8DBD-4AA68251BCA4}|StoreManagementSystem.csproj|solutionrelative:views\\transactiondetailswindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 1,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedHeight": 260,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "TransactionDetailsWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\LAPTOP\\OneDrive\\Desktop\\New folder\\StoreManagementSystem\\Views\\TransactionDetailsWindow.xaml",
+              "RelativeDocumentMoniker": "Views\\TransactionDetailsWindow.xaml",
+              "ToolTip": "C:\\Users\\LAPTOP\\OneDrive\\Desktop\\New folder\\StoreManagementSystem\\Views\\TransactionDetailsWindow.xaml",
+              "RelativeToolTip": "Views\\TransactionDetailsWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-05-28T11:44:10.975Z",
+              "EditorCaption": ""
+            }
+          ]
+        },
+        {
+          "DockedHeight": 140,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
