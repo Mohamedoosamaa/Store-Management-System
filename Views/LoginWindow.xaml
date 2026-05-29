@@ -1,0 +1,90 @@
+﻿<Window x:Class="StoreManagementSystem.Views.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:viewModels="clr-namespace:StoreManagementSystem.ViewModels"
+        mc:Ignorable="d"
+        Title="Store Management System"
+      
+       
+        Background="#EEF2F7">
+
+    <!-- ================= DATACONTEXT ================= -->
+
+    <Window.DataContext>
+
+        <viewModels:LoginViewModel/>
+
+    </Window.DataContext>
+
+    <!-- ================= UI ================= -->
+
+    <Grid>
+
+        <Border Width="500"
+                Padding="30"
+                CornerRadius="18"
+                Background="White"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center">
+
+            <StackPanel>
+
+                <!-- TITLE -->
+
+                <TextBlock Text="Store Management System"
+                           FontSize="28"
+                           FontWeight="Bold"
+                           HorizontalAlignment="Center"
+                           Margin="0 0 0 10"/>
+
+                <TextBlock Text="Login to continue"
+                           Foreground="Gray"
+                           HorizontalAlignment="Center"
+                           Margin="0 0 0 30"/>
+
+                <!-- USERNAME -->
+
+                <TextBlock Text="Username"
+                           FontWeight="SemiBold"
+                           Margin="0 0 0 5"/>
+
+                <TextBox Height="40"
+                         FontSize="14"
+                         Padding="10"
+                         Margin="0 0 0 20"
+                         Text="{Binding Username,
+                         UpdateSourceTrigger=PropertyChanged}"/>
+
+                <!-- PASSWORD -->
+
+                <TextBlock Text="Password"
+                           FontWeight="SemiBold"
+                           Margin="0 0 0 5"/>
+
+                <PasswordBox x:Name="PasswordBox"
+                             Height="40"
+                             FontSize="14"
+                             Padding="10"
+                             Margin="0 0 0 30"
+                             PasswordChanged="PasswordBox_PasswordChanged"/>
+
+                <!-- LOGIN BUTTON -->
+
+                <Button Content="Login"
+                        Height="45"
+                        FontSize="16"
+                        FontWeight="Bold"
+                        Background="#2563EB"
+                        Foreground="White"
+                        BorderThickness="0"
+                        Command="{Binding LoginCommand}"/>
+
+            </StackPanel>
+
+        </Border>
+
+    </Grid>
+
+</Window>

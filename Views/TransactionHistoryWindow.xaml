@@ -1,0 +1,342 @@
+﻿<Window x:Class="StoreManagementSystem.Views.TransactionHistoryWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:StoreManagementSystem.ViewModels"
+        Title="Transaction History"
+        Height="750"
+        Width="1100"
+        WindowStartupLocation="CenterScreen"
+        Background="#F1F5F9">
+
+    <!-- ================= DATACONTEXT ================= -->
+
+    <Window.DataContext>
+
+        <vm:TransactionHistoryViewModel/>
+
+    </Window.DataContext>
+
+    <!-- ================= UI ================= -->
+
+    <Grid>
+
+        <StackPanel Margin="25">
+
+            <!-- ================= HEADER ================= -->
+
+            <Border Background="White"
+                    CornerRadius="12"
+                    Padding="25"
+                    Margin="0 0 0 20">
+
+                <StackPanel>
+
+                    <TextBlock Text="Transaction History"
+                               FontSize="28"
+                               FontWeight="Bold"/>
+
+                    <TextBlock Text="View and manage all transactions"
+                               Foreground="Gray"
+                               Margin="0 8 0 0"/>
+
+                </StackPanel>
+
+            </Border>
+
+            <!-- ================= STATS ================= -->
+
+            <WrapPanel Margin="0 0 0 20">
+
+                <!-- TOTAL TRANSACTIONS -->
+
+                <Border Background="White"
+                        Width="240"
+                        Height="100"
+                        CornerRadius="10"
+                        Margin="0 0 20 0"
+                        Padding="15">
+
+                    <StackPanel>
+
+                        <TextBlock Text="Total Transactions"
+                                   Foreground="Gray"/>
+
+                        <TextBlock Text="{Binding TotalTransactions}"
+                                   FontSize="36"
+                                   FontWeight="Bold"/>
+
+                    </StackPanel>
+
+                </Border>
+
+                <!-- TOTAL REVENUE -->
+
+                <Border Background="White"
+                        Width="240"
+                        Height="100"
+                        CornerRadius="10"
+                        Padding="15">
+
+                    <StackPanel>
+
+                        <TextBlock Text="Total Revenue"
+                                   Foreground="Gray"/>
+
+                        <TextBlock Text="{Binding TotalRevenue,
+                                   StringFormat={}{0:C}}"
+                                   FontSize="28"
+                                   FontWeight="Bold"
+                                   Foreground="#16A34A"/>
+
+                    </StackPanel>
+
+                </Border>
+
+            </WrapPanel>
+
+            <!-- ================= SEARCH ================= -->
+
+            <Border Background="White"
+                    CornerRadius="12"
+                    Padding="20"
+                    Margin="0 0 0 20">
+
+                <Grid HorizontalAlignment="Center">
+
+                    <Grid>
+
+                        <!-- SEARCH BOX -->
+
+                        <TextBox x:Name="SearchBox"
+                                 Width="350"
+                                 Height="42"
+                                 FontSize="15"
+                                 Padding="15 0"
+                                 Background="#F8FAFC"
+                                 BorderBrush="#CBD5E1"
+                                 BorderThickness="1"
+                                 VerticalContentAlignment="Center"
+                                 Text="{Binding SearchText,
+                                 UpdateSourceTrigger=PropertyChanged}">
+
+                            <TextBox.Resources>
+
+                                <Style TargetType="Border">
+
+                                    <Setter Property="CornerRadius"
+                                            Value="8"/>
+
+                                </Style>
+
+                            </TextBox.Resources>
+
+                        </TextBox>
+
+                        <!-- PLACEHOLDER -->
+
+                        <TextBlock Text="Search by transaction ID or status..."
+                                   Margin="15 0"
+                                   Foreground="Gray"
+                                   VerticalAlignment="Center"
+                                   IsHitTestVisible="False">
+
+                            <TextBlock.Style>
+
+                                <Style TargetType="TextBlock">
+
+                                    <Setter Property="Visibility"
+                                            Value="Collapsed"/>
+
+                                    <Style.Triggers>
+
+                                        <DataTrigger Binding="{Binding Text,
+                                                ElementName=SearchBox}"
+                                                     Value="">
+
+                                            <Setter Property="Visibility"
+                                                    Value="Visible"/>
+
+                                        </DataTrigger>
+
+                                    </Style.Triggers>
+
+                                </Style>
+
+                            </TextBlock.Style>
+
+                        </TextBlock>
+
+                    </Grid>
+
+                </Grid>
+
+            </Border>
+
+            <!-- ================= TABLE ================= -->
+
+            <Border Background="White"
+                    CornerRadius="12"
+                    Padding="20">
+
+                <StackPanel>
+
+                    <TextBlock Text="All Transactions"
+                               FontSize="20"
+                               FontWeight="Bold"
+                               Margin="0 0 0 15"/>
+
+                    <!-- VIEW DETAILS BUTTON -->
+
+                    <Button Content="View Details"
+                            Height="45"
+                            Width="180"
+                            HorizontalAlignment="Left"
+                            Margin="0 0 0 15"
+                            Background="#2563EB"
+                            Foreground="White"
+                            FontWeight="Bold"
+                            BorderThickness="0"
+                            Cursor="Hand"
+                            Command="{Binding ViewDetailsCommand}"/>
+
+                    <!-- DATAGRID -->
+
+                    <DataGrid ItemsSource="{Binding Transactions}"
+                              SelectedItem="{Binding SelectedTransaction}"
+                              AutoGenerateColumns="False"
+                              CanUserAddRows="False"
+                              HeadersVisibility="Column"
+                              BorderThickness="0"
+                              RowHeight="45"
+                              FontSize="14"
+                              GridLinesVisibility="None"
+                              Height="300"
+                              IsReadOnly="True"
+                              SelectionMode="Single">
+
+                        <!-- HEADER STYLE -->
+
+                        <DataGrid.ColumnHeaderStyle>
+
+                            <Style TargetType="DataGridColumnHeader">
+
+                                <Setter Property="Background"
+                                        Value="#1E293B"/>
+
+                                <Setter Property="Foreground"
+                                        Value="White"/>
+
+                                <Setter Property="FontWeight"
+                                        Value="Bold"/>
+
+                                <Setter Property="Height"
+                                        Value="40"/>
+
+                            </Style>
+
+                        </DataGrid.ColumnHeaderStyle>
+
+                        <!-- COLUMNS -->
+
+                        <DataGrid.Columns>
+
+                            <DataGridTextColumn Header="Transaction ID"
+                                                Binding="{Binding TransactionId}"
+                                                Width="*"/>
+
+                            <DataGridTextColumn Header="Date"
+                                                Binding="{Binding TransactionDate,
+                                                StringFormat={}{0:dd/MM/yyyy HH:mm}}"
+                                                Width="2*"/>
+
+                            <DataGridTextColumn Header="Items"
+                                                Binding="{Binding ItemCount}"
+                                                Width="*"/>
+
+                            <DataGridTextColumn Header="Subtotal"
+                                                Binding="{Binding SubTotal,
+                                                StringFormat={}{0:C}}"
+                                                Width="*"/>
+
+                            <DataGridTextColumn Header="VAT"
+                                                Binding="{Binding VAT,
+                                                StringFormat={}{0:C}}"
+                                                Width="*"/>
+
+                            <DataGridTextColumn Header="Final Total"
+                                                Binding="{Binding FinalTotal,
+                                                StringFormat={}{0:C}}"
+                                                Width="*"/>
+
+                            <DataGridTextColumn Header="Status"
+                                                Binding="{Binding Status}"
+                                                Width="*"/>
+
+                        </DataGrid.Columns>
+
+                        <!-- STATUS COLORS -->
+
+                        <DataGrid.RowStyle>
+
+                            <Style TargetType="DataGridRow">
+
+                                <Style.Triggers>
+
+                                    <DataTrigger Binding="{Binding Status}"
+                                                 Value="Refunded">
+
+                                        <Setter Property="Background"
+                                                Value="#FECACA"/>
+
+                                    </DataTrigger>
+
+                                </Style.Triggers>
+
+                            </Style>
+
+                        </DataGrid.RowStyle>
+
+                    </DataGrid>
+
+                    <!-- EMPTY STATE -->
+
+                    <TextBlock Text="No Transactions Found"
+                               HorizontalAlignment="Center"
+                               Margin="0 15 0 0"
+                               FontSize="16"
+                               Foreground="Gray">
+
+                        <TextBlock.Style>
+
+                            <Style TargetType="TextBlock">
+
+                                <Setter Property="Visibility"
+                                        Value="Collapsed"/>
+
+                                <Style.Triggers>
+
+                                    <DataTrigger Binding="{Binding Transactions.Count}"
+                                                 Value="0">
+
+                                        <Setter Property="Visibility"
+                                                Value="Visible"/>
+
+                                    </DataTrigger>
+
+                                </Style.Triggers>
+
+                            </Style>
+
+                        </TextBlock.Style>
+
+                    </TextBlock>
+
+                </StackPanel>
+
+            </Border>
+
+        </StackPanel>
+
+    </Grid>
+
+</Window>
